@@ -35,50 +35,59 @@ class Array
 
     #TIME COMPLEXITY: O(n^2)
 
-    def largest_continuous_subsum_two
+    # def largest_continuous_subsum_two
         #list = [2, 3, -6, 7, -6, 7]
-        curr_max = 0
-        largest_max = 0
-        i=0
+        # curr_max = 0
+        # largest_max = 0
+        # i=0
         # newArr=[]
         # (1..self.length).each do |int|
         #     newArr << self.combination(int).to_a
         # end
-        l = self.length-1
-        while i < l
-            curr_max = self[0..i].sum  
-            if curr_max > largest_max
-                largest_max = curr_max
-            else
-                self = self[i..-1]
-                i = 0
-            end
-            i += 1
-        end
-        largest_max
-    end
+        # l = self.length-1
+        # while i < l
+        #     # curr_max = self[0..i].sum  
+        #     if (self[i] + curr_max) > largest_max  # if adding current # to current max made it larger than largest max
+        #         curr_max += self[i]                # just add that number to current max
+        #     else                                   # if adding current # to current max made it smaller than largest max
+                
+                
+        #     end        
+
+        #     if curr_max > largest_max
+        #         largest_max = curr_max
+        #     else
+        #         self = self[i..-1]
+        #         i = 0
+        #     end
+        #     i += 1
+        # end
+        # largest_max
+    # end
+
+    
 end
-
-
 
 # list = [0, 3, 5, 4, -5, 10, 1, 90]
 # p list.my_min
 # p list.my_min_two
 
+nums = [2, 3, -6, 7, -6, 7 ]         # largest = 5, -1
 
-list = [5, 3, -7]
-p list.largest_continuous_subsum_two # => 8
+def largest_continuous_subsum_two(list)
+    current = 0
+    largest = 0
+    i = 0
+    while i < list.length                                              
+        current += list[i]
+        largest = current if current > largest
+        current = 0 if current < 0
+        i += 1
+    end
+    largest
+end
+#time complexity is O(n)
+p largest_continuous_subsum_two(nums)
 
-# list = [2, 3, -6, 7, -6, 7]
-# p list.largest_continuous_subsum_two # => 8 (from [7, -6, 7])
 
-# list = [-5, -1, -3]
-# p list.largest_continuous_subsum_two # => -1 (from [-1])
 
-# possible sub-sums
-[5]           # => 5
-[5, 3]        # => 8 --> we want this one
-[5, 3, -7]    # => 1
-[3]           # => 3
-[3, -7]       # => -4
-[-7]          # => -7
